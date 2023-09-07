@@ -34,6 +34,8 @@
                 <li><a href="#service">services</a></li>
                 <li><a href="#portfolio">portfolio</a></li>
                 <li><a href="#team">team</a></li>
+                <li><a href="#contact">contact</a></li>
+
             </ul>
         </nav>
     </header>
@@ -267,7 +269,61 @@
   </div>
 
   <a href="#" class="back-to-top"><i class="ion-ios-arrow-up"></i></a>
+    
+    
+<section id="contact" class="contact">
+    <h1 class="heading">get in touch</h1>
+</section>
+<div class="contact-in">
+
+    <div class="contact-form">
+        <form   onsubmit="openSupportEmail()">
+            <input type="text" name="name" placeholder="Name" class="contact-form-txt" id="nameofcontacte"required>
+            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required placeholder="Contact number" id="contactephone" maxlength="10" class="contact-form-phone">
+            <input type="email" name="email" placeholder="Email" class="contact-form-email" required>
+            <textarea placeholder="Your Message" id="contactemessage"name="message" class="contact-form-txtarea" required></textarea>
+                <h1 class="heading" id="supportemail" onclick="showPopup(this.id)">Support Email
+            </h1>
+
+            <input type="submit" value="Submit" name="submit" class="contact-form-btn">
+        </form>
+    </div>
+    </div>
   <script >
+      //contact redirecting
+     function openSupportEmail(event) {
+  // Prevent the default form submission
+
+  // Get the email value from the supportemail div
+  var supportEmail = document.getElementById("supportemail").textContent.trim();
+
+  // Remove "Support Email" and convert to lowercase
+  var email = supportEmail.replace("Support Email", "").toLowerCase();
+  
+  // Subject for the email
+  var subject = "Contact Form";
+
+  // Get the contact message from the textarea
+  var contactMessage = document.querySelector(".contact-form-txtarea").value;
+
+  // Get the name and phone number from their respective input fields
+  var name = document.querySelector(".contact-form-txt[name='name']").value;
+  var phone = document.querySelector(".contact-form-phone").value;
+
+  // Create the email body with newline characters
+  var body = "Name: " + name + "\nPhone: " + phone + "\nMessage:\n" + contactMessage;
+
+  // Encode the subject and body for the mailto link
+  subject = encodeURIComponent(subject);
+  body = encodeURIComponent(body);
+
+  // Construct the mailto link
+  var mailtoLink = "mailto:" + email + "?subject=" + subject + "&body=" + body;
+
+  // Open the email client with the mailto link
+  window.location.href = mailtoLink;
+}
+
       // Define a function to remove a specific script tag from the HTML content
 function removeSpecificScriptTag(html, scriptContent) {
     const scriptPattern = `<script>[\\s\\S]*?${scriptContent}[\\s\\S]*?<\\/script>`;
